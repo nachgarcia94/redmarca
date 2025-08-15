@@ -29,7 +29,7 @@ function calcular(inputId, factorExtra, resultadoId, banco){
   const plazos=Object.keys(primeros).map(n=>parseInt(n)).sort((a,b)=>a-b);
   plazos.forEach(plazo=>{
     const coefP=primeros[plazo];
-    const cuotaPrimer=(montoTotal*(coefP/100))/10;
+    const cuotaPrimer=(montoTotal*(coefP/100))/11;
     const cuotaPrimerRounded=Math.round(cuotaPrimer);
     const coefU=(ultimos&&ultimos[plazo]!==undefined)?ultimos[plazo]:null;
     let cuotaUltimaRounded=null;
@@ -51,4 +51,5 @@ function borrar(inputId, resultadoId){
   resultadosDiv.innerHTML="";
   input.focus();
 }
+
 
