@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Calculadora Créditos Red Marca</title>
+<style>
+  :root{
+    --bg: #f5f6f8;
+    --card-radius: 12px;
+    --shadow: 0 6px 18px rgba(10,10,10,0.06);
+  }
+  body{
+    font-family: "Inter", Arial, sans-serif;
+    background: var(--bg);
+    margin: 0;
+    padding: 24px;
+    color: #222;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  header img {
+    width: 40vw;
+    max-width: 180px;
+    height: auto;
+    object-fit: contain;
+    display: inline-block;
+  }
+  .wrapper{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .container{
+    flex: 1 1 320px;
+    background: white;
+    border-radius: var(--card-radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  /* BBVA styling (azules) */
+  .bbva{
+    border-color: #002f6c;
+  }
+  .bbva .title{
+    background: linear-gradient(90deg,#002f6c 0%,#1e69c8 100%);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+  }
+  .bbva input{ border: 1px solid #002f6c; }
+  .bbva .btn-calc{ background: #002f6c; color: #fff; }
+  .bbva .btn-clear{ background: #1976d2; color: #fff; }
+  .bbva .resultados{ border-top: 2px solid #002f6c; }
+  /* ICBC styling (rojos) */
+  .icbc{
+    border-color: #b5121b;
+  }
+  .icbc .title{
+    background: linear-gradient(90deg,#b5121b 0%,#e53935 100%);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+  }
+  .icbc input{ border: 1px solid #b5121b; }
+  .icbc .btn-calc{ background: #b5121b; color: #fff; }
+  .icbc .btn-clear{ background: #e53935; color: #fff; }
+  .icbc .resultados{ border-top: 2px solid #b5121b; }
+  /* GALICIA styling (azul celeste y azul vibrante) */
+  .galicia {
+    border-color: #0096d6;
+  }
+  .galicia .title {
+    background: linear-gradient(90deg, #0096d6 0%, #00a9f4 100%);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+  }
+  .galicia input {
+    border: 1px solid #0096d6;
+  }
+  .galicia .btn-calc {
+    background: #0096d6;
+    color: #fff;
+  }
+  .galicia .btn-clear {
+    background: #00a9f4;
+    color: #fff;
+  }
+  .galicia .resultados {
+    border-top: 2px solid #0096d6;
+  }
+  label{
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: 6px;
+  }
+  input[type="number"]{
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    outline: none;
+  }
+  .botonera{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:6px;
+  }
+  button{
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    flex: 1 1 48%;
+  }
+  .resultados{
+    background: #fafafa;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+  }
+  .resultados p{
+    margin: 6px 0;
+  }
+  .plazo-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:center;
+  }
+  .plazo-row .label{
+    color:#444;
+    font-weight:600;
+  }
+  .plazo-row .value{
+    font-weight:800;
+  }
+  /* responsive */
+  @media (max-width: 900px){
+    .wrapper{
+      padding: 0 12px;
+    }
+    .container{
+      flex: 1 1 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.jpg" alt="Red Marca Logo" />
+  </header>
+
+  <div class="wrapper">
+    <!-- BBVA -->
+    <section class="container bbva" aria-labelledby="bbvaTitle">
+      <div class="title" id="bbvaTitle">CUOTAS BBVA</div>
+
+      <label for="monto1">Monto solicitado por el cliente ($)</label>
+      <input id="monto1" type="number" placeholder="Ej: 150000" min="1" max="50000000" />
+
+      <div class="botonera">
+        <button class="btn-calc" onclick="calcular('monto1', 1.125, 'resultados1', 'bbva')">Calcular</button>
+        <button class="btn-clear" onclick="borrar('monto1','resultados1')">Borrar</button>
+      </div>
+
+      <div class="resultados" id="resultados1" aria-live="polite"></div>
+    </section>
+
+    <!-- ICBC -->
+    <section class="container icbc" aria-labelledby="icbcTitle">
+      <div class="title" id="icbcTitle">CUOTAS ICBC</div>
+
+      <label for="monto2">Monto solicitado por el cliente ($)</label>
+      <input id="monto2" type="number" placeholder="Ej: 150000" min="1" max="50000000" />
+
+      <div class="botonera">
+        <button class="btn-calc" onclick="calcular('monto2', 1.10, 'resultados2', 'icbc')">Calcular</button>
+        <button class="btn-clear" onclick="borrar('monto2','resultados2')">Borrar</button>
+      </div>
+
+      <div class="resultados" id="resultados2" aria-live="polite"></div>
+    </section>
+
+    <!-- GALICIA -->
+    <section class="container galicia" aria-labelledby="galiciaTitle">
+      <div class="title" id="galiciaTitle">CUOTAS GALICIA</div>
+
+      <label for="monto3">Monto solicitado por el cliente ($)</label>
+      <input id="monto3" type="number" placeholder="Ej: 150000" min="1" max="50000000" />
+
+      <div class="botonera">
+        <button class="btn-calc" onclick="calcular('monto3', 1.10, 'resultados3', 'galicia')">Calcular</button>
+        <button class="btn-clear" onclick="borrar('monto3','resultados3')">Borrar</button>
+      </div>
+
+      <div class="resultados" id="resultados3" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+
